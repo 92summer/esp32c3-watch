@@ -3,6 +3,21 @@
 #include "nvs_flash.h"
 #include "freertos/event_groups.h"
 
+#define WIFI_SSID       "Mi10Pro"
+#define WIFI_PASSWORD   "12345687"
+
+void wifi_connect(void)
+{
+    wifi_sta_config_t wifi_sta_config = {
+        .ssid = WIFI_SSID,
+        .password = WIFI_PASSWORD,
+    };
+
+    ESP_ERROR_CHECK(wifi_sta_init());
+    ESP_ERROR_CHECK(wifi_sta_set_config(&wifi_sta_config));
+    ESP_ERROR_CHECK(wifi_sta_connect());
+}
+
 #define WIFI_MAXIMUM_RETRY  8
 
 static const char *TAG = "wifi station";
