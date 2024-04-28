@@ -26,7 +26,7 @@
 #include "lvgl_helpers.h"
 #include "lv_demos.h"
 
-#define TAG "demo"
+#define TAG "lvgl_demo"
 #define LV_TICK_PERIOD_MS 10
 #define SCREEN_WIDTH 300
 #define SCREEN_HEIGHT 240
@@ -36,6 +36,7 @@ static void guiTask(void *pvParameter);
 static void create_demo_application(void);
 
 void app_main() {
+    ESP_LOGI(TAG,"start lvgl demo app");
     xTaskCreatePinnedToCore(guiTask, "gui", 4096*2, NULL, 0, NULL, 0);
 }
 
