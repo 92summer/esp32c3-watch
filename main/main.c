@@ -28,8 +28,8 @@
 
 #define TAG "demo"
 #define LV_TICK_PERIOD_MS 10
-#define SCREEN_WIDTH 320
-#define SCREEN_HEIGHT 172
+#define SCREEN_WIDTH 300
+#define SCREEN_HEIGHT 240
 
 static void lv_tick_task(void *arg);
 static void guiTask(void *pvParameter);
