@@ -24,7 +24,7 @@
 
 #include "lvgl.h"
 #include "lvgl_helpers.h"
-#include "demos/widgets/lv_demo_widgets.h"
+#include "lv_demos.h"
 
 #define TAG "demo"
 #define LV_TICK_PERIOD_MS 10
