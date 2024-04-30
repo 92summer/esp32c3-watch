@@ -3,8 +3,7 @@
 #include "nvs_flash.h"
 #include "freertos/event_groups.h"
 
-#define WIFI_SSID       "Mi10Pro"
-#define WIFI_PASSWORD   "12345687"
+
 
 void wifi_connect(void)
 {

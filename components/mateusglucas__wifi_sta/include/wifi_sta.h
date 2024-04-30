@@ -3,6 +3,15 @@
 #include "esp_err.h"
 #include "esp_wifi.h"
 
+#define USE_USER_WIFI 0
+#if USE_USER_WIFI
+#define WIFI_SSID       "Mi10Pro"
+#define WIFI_PASSWORD   "12345687"
+#else
+#define WIFI_SSID       "耶耶"
+#define WIFI_PASSWORD   "12345687!"
+#endif
+
 void wifi_connect(void);
 
 /**

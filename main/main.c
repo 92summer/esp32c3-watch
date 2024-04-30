@@ -26,14 +26,10 @@
 #include "lvgl_helpers.h"
 #include "lv_demos.h"
 
-#include "wifi_sta.h"
-
 #define TAG "lvgl_demo"
 #define LV_TICK_PERIOD_MS 10
 #define SCREEN_WIDTH 300
 #define SCREEN_HEIGHT 240
-
-
 SemaphoreHandle_t xGuiSemaphore;
 static void create_demo_application(void)
 {
@@ -93,6 +89,8 @@ static void guiTask(void *pvParameter) {
     vTaskDelete(NULL);
 }
 
+#include "wifi_sta.h"
+//去"wifi_sta.h"修改要连接的wifi
 static void Taskwifi(void* param) 
 {
     ESP_LOGI("WIFI","start wifi connection");
