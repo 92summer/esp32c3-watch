@@ -34,19 +34,20 @@
 #define SCREEN_HEIGHT 240
 
 
-static void lv_tick_task(void *arg);
-static void guiTask(void *pvParameter);
-static void create_demo_application(void);
-
-void app_main() {
-    wifi_connect();
-    ESP_LOGI(TAG,"start lvgl demo app");
-    xTaskCreatePinnedToCore(guiTask, "gui", 4096*2, NULL, 0, NULL, 0);
-}
-
 SemaphoreHandle_t xGuiSemaphore;
+static void create_demo_application(void)
+{
+    lv_demo_widgets();
+    lv_demo_widgets_start_slideshow();
+}
+static void lv_tick_task(void *arg) {
+    (void) arg;
+
+    lv_tick_inc(LV_TICK_PERIOD_MS);
+}
 static void guiTask(void *pvParameter) {
 
+    ESP_LOGI(TAG,"start lvgl demo app");
     (void) pvParameter;
     xGuiSemaphore = xSemaphoreCreateMutex();
 
@@ -92,14 +93,20 @@ static void guiTask(void *pvParameter) {
     vTaskDelete(NULL);
 }
 
-static void create_demo_application(void)
+static void Taskwifi(void* param) 
 {
-    lv_demo_widgets();
-    lv_demo_widgets_start_slideshow();
+    ESP_LOGI("WIFI","start wifi connection");
+    wifi_connect();
+    while(1)
+    {
+		//TO DO:wifi reconnection
+        vTaskDelay(1000/portTICK_PERIOD_MS);//延时1000ms=1s,使系统执行其他任务
+    }
 }
 
-static void lv_tick_task(void *arg) {
-    (void) arg;
 
-    lv_tick_inc(LV_TICK_PERIOD_MS);
+void app_main() {
+    xTaskCreate(Taskwifi,"wifi",4096,NULL,1,NULL);
+    // vTaskDelay(800/portTICK_PERIOD_MS);
+    xTaskCreatePinnedToCore(guiTask, "gui", 4096*2, NULL, 0, NULL, 0);
 }
