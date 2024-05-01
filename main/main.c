@@ -89,22 +89,15 @@ static void guiTask(void *pvParameter) {
     vTaskDelete(NULL);
 }
 
-#include "wifi_sta.h"
-//去"wifi_sta.h"修改要连接的wifi
-static void Taskwifi(void* param) 
-{
-    ESP_LOGI("WIFI","start wifi connection");
-    wifi_connect();
-    while(1)
-    {
-		//TO DO:wifi reconnection
-        vTaskDelay(1000/portTICK_PERIOD_MS);//延时1000ms=1s,使系统执行其他任务
-    }
-}
-
+#include "wifi_sta.h" //Taskwifi
+/* xTaskCreate(Taskwifi,"wifi connect",4096,NULL,1,NULL);
+** 没有重连机制，已舍弃
+*/
+#include "http_client_demo.h" //TaskHTTP
+//去http_client_demo.c里面修改要连接的wifi
 
 void app_main() {
-    xTaskCreate(Taskwifi,"wifi",4096,NULL,1,NULL);
-    // vTaskDelay(800/portTICK_PERIOD_MS);
+
+    xTaskCreate(TaskHTTP,"http client demo",4096*2,NULL,1,NULL);
     xTaskCreatePinnedToCore(guiTask, "gui", 4096*2, NULL, 0, NULL, 0);
 }

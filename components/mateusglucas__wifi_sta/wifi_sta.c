@@ -3,7 +3,25 @@
 #include "nvs_flash.h"
 #include "freertos/event_groups.h"
 
+#define USE_USER_WIFI 0
+#if USE_USER_WIFI
+#define WIFI_SSID       "Mi10Pro"
+#define WIFI_PASSWORD   "12345687"
+#else
+#define WIFI_SSID       "耶耶"
+#define WIFI_PASSWORD   "12345687!"
+#endif
 
+void Taskwifi(void* param) 
+{
+    ESP_LOGI("WIFI","start wifi connection");
+    wifi_connect();
+    while(1)
+    {
+		//TO DO:wifi reconnection
+        vTaskDelay(1000/portTICK_PERIOD_MS);//延时1000ms=1s,使系统执行其他任务
+    }
+}
 
 void wifi_connect(void)
 {
