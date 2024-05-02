@@ -67,7 +67,7 @@ void TaskHTTP(void* param)
             http_rest_client_cleanup_json(&response_buffer);
         }
         }
-        ESP_LOGI(TAG, "Looping in 3 sec...");
+        ESP_LOGI(TAG, "Looping in 10 sec...");
         vTaskDelay(10000 / portTICK_PERIOD_MS);
         }
 }

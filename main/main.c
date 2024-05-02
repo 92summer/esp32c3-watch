@@ -89,10 +89,7 @@ static void guiTask(void *pvParameter) {
     vTaskDelete(NULL);
 }
 
-#include "wifi_sta.h" //Taskwifi
-/* xTaskCreate(Taskwifi,"wifi connect",4096,NULL,1,NULL);
-** 没有重连机制，已舍弃
-*/
+
 #include "http_client_demo.h" //TaskHTTP
 //去http_client_demo.c里面修改要连接的wifi
 

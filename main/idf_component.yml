@@ -1,7 +1,6 @@
 ## IDF Component Manager Manifest File
 dependencies:
   parabuzzle/http_rest_client: "^0.1.4"
-  mateusglucas/wifi_sta: "^1.0.0"
   ## Required IDF version
   idf:
     version: ">=4.1.0"

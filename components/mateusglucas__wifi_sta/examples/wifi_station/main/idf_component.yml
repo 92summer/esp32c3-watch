@@ -1,4 +1,0 @@
-dependencies:
-    mateusglucas/wifi_sta:
-        version: "*"
-        override_path: '../../../'
