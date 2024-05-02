@@ -23,7 +23,10 @@
 #define WIFI_PASSWORD   "12345687!"
 #endif
 
-#define URL "https://jsonplaceholder.typicode.com/todos/1"
+// 实时天气
+// #define URL "http://api.seniverse.com/v3/weather/now.json?key=STxpmSa4oTixXmbym&location=%E6%AD%A6%E6%B1%89&language=zh-Hans&unit=c"
+// 天气预报
+#define URL "http://api.seniverse.com/v3/weather/daily.json?key=STxpmSa4oTixXmbym&location=%E6%AD%A6%E6%B1%89&language=zh-Hans&unit=c&start=0&days=5"
 
 static const char *TAG = "http rest client demo";
 
@@ -65,7 +68,7 @@ void TaskHTTP(void* param)
         }
         }
         ESP_LOGI(TAG, "Looping in 3 sec...");
-        vTaskDelay(3000 / portTICK_PERIOD_MS);
+        vTaskDelay(10000 / portTICK_PERIOD_MS);
         }
 }
 
